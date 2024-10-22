@@ -8,7 +8,7 @@ function ConversorDeMoedas() {
   const [resultado, setResultado] = useState(0);
 
   useEffect(() => {
-    fetch('https://api.exchangeratesapi.io/latest')
+    fetch('https://api.exchangeratesapi.io/v1/latest?access_key=0cbed3700ff557c96fa89a69c3062429')
       .then(response => response.json())
       .then(data => {
         setMoedas([...Object.keys(data.rates)]);
@@ -17,7 +17,7 @@ function ConversorDeMoedas() {
   }, []);
 
   const converterMoeda = () => {
-    fetch(`https://api.exchangeratesapi.io/latest?base=${deMoeda}&symbols=${paraMoeda}`)
+    fetch(`https://api.exchangeratesapi.io/v1/latest?access_key=0cbed3700ff557c96fa89a69c3062429`)
       .then(response => response.json())
       .then(data => {
         const taxaDeCambio = data.rates[paraMoeda];
@@ -48,7 +48,7 @@ function ConversorDeMoedas() {
         <button onClick={converterMoeda}>Converter</button>
       </div>
       <div>
-        <h3>Resultado:</h3>
+        <h3>Resultado: </h3>
         <p>{resultado}</p>
       </div>
     </div>
